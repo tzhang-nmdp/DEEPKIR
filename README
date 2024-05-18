@@ -2,7 +2,7 @@ Deep learning approach for KIR imputation like DEEPHLA
 To do list:
 1. Deep learning framework build
 2. Model settings for KIR genomics
-3. 1000genome reference data build
-4. other reference / benchmark data for testing
+3. 1000genome reference data build (UC WGS KIR pipeline https://github.com/tzhang-nmdp/PING)
+4. other reference / benchmark data (HRPC) for testing
 
 The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping
