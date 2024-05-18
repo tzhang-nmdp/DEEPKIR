@@ -4,6 +4,6 @@ To do list:
 2. Model settings for KIR genomics
 3. 1000genome reference data build 
 (WGS KIR pipeline https://github.com/tzhang-nmdp/PING; https://github.com/tzhang-nmdp/KIR-imputation/tree/main)
-4. other reference / benchmark data (HRPC) for testing
+4. other reference / benchmark data (HRPC/EGA/ TPD) for simulation/testing
 
 The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping
