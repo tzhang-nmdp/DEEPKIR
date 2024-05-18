@@ -1,5 +1,5 @@
 {
-	"1": {"HLA": [['KIR2DL1', 'KIR2DL2', 'KIR2DL3'], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
+	"1": {"HLA": ['KIR2DL1', 'KIR2DL2', 'KIR2DL3'], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
     "2": {"HLA": ['KIR2DS1', 'KIR2DS2', 'KIR2DS3', 'KIR2DS4', 'KIR2DS5'], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
     "3": {"HLA": ['KIR3DL1', 'KIR3DL2'], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
     "4": {"HLA": ['KIR2DL4', 'KIR2DL5A', 'KIR2DL5B'], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
