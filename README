@@ -6,4 +6,4 @@ To do list:
 (WGS KIR pipeline https://github.com/tzhang-nmdp/PING; https://github.com/tzhang-nmdp/KIR-imputation/tree/main)
 4. other reference / benchmark data (HRPC/EGA/ TPD) for simulation/testing
 
-The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping
+The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping / protein interaction (alphafold similar algorithms implementation)
