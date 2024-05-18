@@ -1,10 +1,10 @@
 {
-	"1": {"HLA": ["KIR2DL1", "KIR2DL2", "KIR2DL3"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
-    "2": {"HLA": ["KIR2DS1", "KIR2DS2", "KIR2DS3", "KIR2DS4", "KIR2DS5"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
-    "3": {"HLA": ["KIR3DL1", "KIR3DL2"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
-    "4": {"HLA": ["KIR2DL4", "KIR2DL5A", "KIR2DL5B"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
-    "5": {"HLA": ["KIR3DS1"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},  
-    "6": {"HLA": ["KIR3DL3"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},  
-    "7": {"HLA": ["KIR3DP1"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},  
-    "8": {"HLA": ["KIR2DP1"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},    
+	"1": {"KIR": ["KIR2DL1", "KIR2DL2", "KIR2DL3"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
+    "2": {"KIR": ["KIR2DS1", "KIR2DS2", "KIR2DS3", "KIR2DS4", "KIR2DS5"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
+    "3": {"KIR": ["KIR3DL1", "KIR3DL2"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
+    "4": {"KIR": ["KIR2DL4", "KIR2DL5A", "KIR2DL5B"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},
+    "5": {"KIR": ["KIR3DS1"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},  
+    "6": {"KIR": ["KIR3DL3"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},  
+    "7": {"KIR": ["KIR3DP1"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},  
+    "8": {"KIR": ["KIR2DP1"], "w": 500, "conv1_num_filter": 128, "conv2_num_filter": 64, "conv1_kernel_size": 64, "conv2_kernel_size": 64, "fc_len": 256},    
 }
