@@ -7,8 +7,6 @@ K-mer based allele genotyping and EM based haplotype phasing
 (WGS KIR pipeline https://github.com/tzhang-nmdp/PING; https://github.com/tzhang-nmdp/KIR-imputation/tree/main)
 4. other reference / benchmark data (HRPC / GEO / cell line) for simulation/testing (find HRPC SNP information, overlap ?HRPC sample and ?1000 genome sample, cell line, GEO RNAseq + WGS) 
 
-<div align="center">
-<img src="https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/DEEP-KIR%20benchmarking.png">
-</div>
+<img src="https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/DEEP-KIR%20benchmarking.png"  width=60%>
 
 The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping / protein interaction (alphafold similar algorithms implementation)
