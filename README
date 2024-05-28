@@ -10,9 +10,4 @@ K-mer based allele genotyping and EM based haplotype phasing
 ## Benchmarking
 ![Benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/main/fig/DEEPKIR_benchmarking.png)
 
-<div align="center">
-<img src="https://github.com/tzhang-nmdp/DEEPKIR/main/fig/DEEPKIR_benchmarking.png"  width=60%>
-</div>
-##
-
 The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping / protein interaction (alphafold similar algorithms implementation)
