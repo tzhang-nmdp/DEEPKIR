@@ -2,7 +2,8 @@ Deep learning approach for KIR imputation like DEEPHLA
 To do list:
 1. Deep learning framework build
 2. Model settings for KIR genomics
-3. 1000genome reference data build (AJHG PING paper has 3DL1/2 genotype for 1000 genome)
+3. 1000genome reference data build (AJHG PING paper has 3DL1/2 genotype for 1000 genome) (KIRCLE/GENY/GRAPH-KIR/KIR-IMPUTATION/KPI/KASS/KIR*IMP)
+EM algorithm for most allele genotyping and haplotype phasing
 (WGS KIR pipeline https://github.com/tzhang-nmdp/PING; https://github.com/tzhang-nmdp/KIR-imputation/tree/main)
 4. other reference / benchmark data (HRPC / GEO / cell line) for simulation/testing (find HRPC SNP information, overlap ?HRPC sample and ?1000 genome sample, cell line, GEO RNAseq + WGS) 
 
