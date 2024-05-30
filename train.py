@@ -155,7 +155,7 @@ def train(args):
     # Load files
     print('Loading files...')
     ref_bim = pd.read_table(args.ref + '.bim', sep='\t|\s+', names=['chr', 'id', 'dist', 'pos', 'a1', 'a2'], header=None, engine='python')
-    ref_phased = pd.read_table(args.ref + '.bgl.phased', sep='\t|\s+', header=None, engine='python', skiprows=5).iloc[:, 1:]
+    ref_phased = pd.read_table(args.ref + '.bgl.phased', sep='\t|\s+', header=None, engine='python', skiprows=1).iloc[:, 1:]
     ref_phased = ref_phased.set_index(1)
     sample_bim = pd.read_table(args.sample + '.bim', sep='\t|\s+', names=['chr', 'id', 'dist', 'pos', 'a1', 'a2'], header=None, engine='python')
     with open(args.model + '.model.json', 'r') as f:
@@ -175,7 +175,7 @@ def train(args):
     concord_snp = ref_bim.pos.isin(sample_bim.pos)
     for i in range(len(concord_snp)):
         if concord_snp.iloc[i]:
-            tmp = np.where(sample_bim.pos == ref_bim.iloc[i].pos)[0][0]
+            tmp = np.where(sample_bim.id == ref_bim.iloc[i].id)[0][0]
             if set((ref_bim.iloc[i].a1, ref_bim.iloc[i].a2)) != \
                     set((sample_bim.iloc[tmp].a1, sample_bim.iloc[tmp].a2)):
                 concord_snp.iloc[i] = False
@@ -185,6 +185,12 @@ def train(args):
     logger.log('{} SNPs loaded from reference.'.format(len(ref_bim)))
     logger.log('{} SNPs loaded from sample.'.format(len(sample_bim)))
     logger.log('{} SNPs matched in position and used for training.'.format(num_concord))
+    
+############################################################################################################################
+    pickle.dump(concord_snp,open("concord_snp.pkl","wb"))
+    pickle.dump(ref_phased,open("ref_phased.pkl","wb"))        
+    pickle.dump(kir_info,open("kir_info.pkl","wb"))  
+############################################################################################################################
 
     ref_concord_phased = ref_phased.iloc[np.where(concord_snp)[0]]
     model_bim = ref_bim.iloc[np.where(concord_snp)[0]]
@@ -213,7 +219,9 @@ def train(args):
             kir_encoded[kir][digit] = np.zeros(2 * num_ref)
             for j in range(len(kir_info[kir][digit])):
                 kir_encoded[kir][digit][np.where(ref_phased.loc[kir_info[kir][digit][j]] == 'P')[0]] = j
-
+############################################################################################################################
+    pickle.dump(kir_encoded,open("kir_encoded.pkl","wb"))    
+############################################################################################################################
     # Parameters for training
     val_split = args.val_split
     batch_size = 64
@@ -255,7 +263,9 @@ def train(args):
                         tmp.append(kir_encoded[kir][digit][i])
                 train_data.append(tmp)
             num_task = len(train_data[0]) - 1
-
+############################################################################################################################
+            pickle.dump(train_data,open("train_data.pkl","wb"))
+############################################################################################################################
             # Spare the part of data for validation
             train_index = np.arange(int(2*num_ref*val_split), 2*num_ref)
             val_index = np.arange(int(2*num_ref*val_split))
