@@ -51,7 +51,7 @@ $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL
 
   Rows are markers and columns are individuals, as one column per individual. 
 
-</b>
+<b>
 
 </b>
 
