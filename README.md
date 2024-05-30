@@ -1,6 +1,5 @@
-# Deep learning approach for KIR imputation
+# Deep learning approach for KIR imputation (DEEPKIR)
 
-# DEEPKIR
 ## KIR genomic haplotype complex:
 ![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/KIR_summary.png)
 KIR
@@ -52,7 +51,7 @@ $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL
   Rows are markers and columns are individuals, as one column per individual. 
 
 <b>
-
+#
 </b>
 
 ## Deep learning framework design:
