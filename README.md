@@ -2,7 +2,7 @@
 
 ## KIR genomic haplotype complex:
 ![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/KIR_summary.png)
-KIR
+Killer cell immunoglobulin-like receptors (KIR), containing a family of polymorphic and highly homologous genes, maps to chromosome 19q13.4 within the 1 Mb leukocyte receptor complex (LRC). Variation at the KIR gene complex is a function of both allelic polymorphism at several KIR genes and variability in the number and types of genes present on any given haplotype.
 
 <b>
 ---------------------------------------------------------------------------------------------------------------------------------
