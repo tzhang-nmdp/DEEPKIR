@@ -10,11 +10,11 @@ Killer cell immunoglobulin-like receptors (KIR), containing a family of polymorp
 
 ### Installation
 #### Requirements
-- Python 3.x (3.7.4)
-- Pytorch (1.4.0)
-- Numpy (1.17.2)
-- Pandas (0.25.1)
-- Scipy (1.3.1)
+- Python 3.x (3.9.18)
+- Pytorch (1.10.2)
+- Numpy (1.26.2)
+- Pandas (2.2.2)
+- Scipy (1.13.0)
 
 - 
 ``` r
