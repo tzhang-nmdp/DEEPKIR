@@ -16,7 +16,6 @@ Killer cell immunoglobulin-like receptors (KIR), containing a family of polymorp
 - Pandas (2.2.2)
 - Scipy (1.13.0)
 
-- 
 ``` r
 conda env create -f pytorch.yml
 conda activate pytorch
