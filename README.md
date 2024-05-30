@@ -29,10 +29,10 @@ python train.py --ref reference/test (.bgl.phased (.haps)/.bim/.fam) --sample re
 ##### Arguments and options
 | Option name   | Descriptions                                                 | Required | Default   |
 | ------------- | ------------------------------------------------------------ | -------- | --------- |
-| `--ref`       | HLA reference data (.bgl.phased, and .bim format).           | Yes      | None      |
+| `--ref`       | KIR reference data (.bgl.phased, and .bim format).           | Yes      | None      |
 | `--sample`    | Sample SNP data of the MHC region (.bim format).             | Yes      | None      |
 | `--model`     | Model configuration (.model.json format).                    | Yes      | None      |
-| `--kir`       | HLA information of the reference data (.hla.json format).    | Yes      | None      |
+| `--kir`       | KIR information of the reference data (.kir.json format).    | Yes      | None      |
 | `--model-dir` | Directory for saving trained models.                         | No       | {BASE\_DIR}/model   |
 | `--num-epoch` | Number of epochs to train.                                   | No       | 100       |
 | `--patience`  | Patience for early-stopping. If you prefer no early-stopping, specify the same value as `--num-epoch`. | No       | 16        |
@@ -45,7 +45,7 @@ $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL
 ```
 ##### Outputs
 
-- {OUT}.deephla.phased
+- {OUT}.deepkir.phased
 
   Imputed allele phased (best-guess genotypes) data. 
 
@@ -53,7 +53,7 @@ $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL
 
   First column is marker name; and subsequent columns are genotypes as two columns per individual.
 
-- {OUT}.deephla.dosage
+- {OUT}.deepkir.dosage
 
   Imputed allele dosage data. 
 
