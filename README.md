@@ -33,7 +33,23 @@ python train.py --ref reference/test (.bgl.phased (.haps)/.bim/.fam) --sample re
 ``` r
 $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL (.model.json) --kir KIR (.kir.json) --model-dir MODEL_DIR --out OUT
 ```
+##### Outputs
 
+- {OUT}.deephla.phased
+
+  Imputed allele phased (best-guess genotypes) data. 
+
+  Rows are markers and columns are individuals.
+
+  First column is marker name; and subsequent columns are genotypes as two columns per individual.
+
+- {OUT}.deephla.dosage
+
+  Imputed allele dosage data. 
+
+  First, second, and third columns are marker name, allele1 ("P"), and allele2 ("A"); and subsequent columns are dosages as one column per individual.
+
+  Rows are markers and columns are individuals, as one column per individual. 
 
 
 ## Deep learning framework design:
