@@ -3,12 +3,12 @@
 # CYTO-SV-ML
 #### DEEPKIR design:
 
-![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/DEEPKIR_benchmarking.png)
+![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/main/DEEPKIR_benchmarking.png)
 
-![workflow](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/workflow.png)
+![workflow](https://github.com/tzhang-nmdp/DEEPKIR/main/workflow.png)
 
 <p>
-   <img src="https://github.com/tzhang-nmdp/DEEPKIR/blob/main/workflow.png" width="220" height="240" /> 
+   <img src="https://github.com/tzhang-nmdp/DEEPKIR/main/workflow.png" width="220" height="240" /> 
 </p>
 
 2. Model settings for KIR genomics
