@@ -1,6 +1,6 @@
 # Deep learning approach for KIR imputation
 
-# CYTO-SV-ML
+# DEEPKIR
 #### DEEPKIR 1st phase testing design:
 ![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/KIR_summary.png)
 
