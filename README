@@ -2,7 +2,7 @@
 
 # CYTO-SV-ML
 #### DEEPKIR design:
-![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/edit/main/DEEPKIR_benchmarking.png)
+![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/DEEPKIR_benchmarking.png)
 
 2. Model settings for KIR genomics
 3. 1000genome reference data build (AJHG PING paper has 3DL1/2 genotype for 1000 genome) (KIRCLE/GENY/GRAPH-KIR/KIR-IMPUTATION/KPI/KASS/KIR*IMP)
