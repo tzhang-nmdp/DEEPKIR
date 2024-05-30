@@ -51,6 +51,8 @@ $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL
 
   Rows are markers and columns are individuals, as one column per individual. 
 
+</b>
+
 
 ## Deep learning framework design:
 ![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/DEEPKIR_2nd_phase.png)
