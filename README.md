@@ -37,6 +37,6 @@ $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL
 
 
 ## Deep learning framework design:
-![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/DEEPKIR_design.png)
+![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/DEEPKIR_2nd_phase.png)
 The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping / protein interaction
 
