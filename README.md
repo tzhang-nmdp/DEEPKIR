@@ -16,7 +16,7 @@ python train.py --ref reference/test --sample reference/test --model reference/t
 ```
 ## Imputation
 ``` r
-python impute.py --ref reference/test --sample reference/test --model reference/test --kir reference/test --model-dir reference/model
+$ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL (.model.json) --hla HLA (.hla.json) --model-dir MODEL_DIR --out OUT
 ```
 
 #### Deep learning framework design:
