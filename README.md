@@ -4,6 +4,10 @@
 ![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/KIR_summary.png)
 KIR
 
+<b>
+------------------------------------------------------------------------------------------------------------------------------------------------------
+</b>
+
 ### Installation
 ``` r
 conda env create -f pytorch.yml
@@ -51,7 +55,7 @@ $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL
   Rows are markers and columns are individuals, as one column per individual. 
 
 <b>
-# 
+------------------------------------------------------------------------------------------------------------------------------------------------------
 </b>
 
 ## Deep learning framework design:
