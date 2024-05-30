@@ -1,16 +1,16 @@
 # Deep learning approach for KIR imputation
 
 # DEEPKIR
-#### KIR genomic haplotype complex:
+## KIR genomic haplotype complex:
 ![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/KIR_summary.png)
 KIR
 
-## Installation
+### Installation
 ``` r
 conda env create -f pytorch.yml
 conda activate pytorch
 ```
-## Model training
+### Model training
 ``` r
 # run test data from 1KGP (KIR3DL1/KIR3DS1/KIR3DL2)
 python train.py --ref reference/test (.bgl.phased (.haps)/.bim/.fam) --sample reference/test --model reference/test (.model.json) --kir reference/test (.kir.json) --model-dir reference/model
@@ -29,12 +29,12 @@ python train.py --ref reference/test (.bgl.phased (.haps)/.bim/.fam) --sample re
 | `--val-split` | Ratio of splitting data for validation.                      | No       | 0.1       |
 | `--max-digit` | Maximum resolution of alleles to impute ("2-digit", "4-digit", or "6-digit"). | No       | "4-digit" |
 
-## Imputation
+### Imputation
 ``` r
 $ python impute.py --sample SAMPLE (.bgl.phased (.haps)/.bim/.fam) --model MODEL (.model.json) --kir KIR (.kir.json) --model-dir MODEL_DIR --out OUT
 ```
 
-#### Deep learning framework design:
+## Deep learning framework design:
 ![DEEPKIR_benchmarking](https://github.com/tzhang-nmdp/DEEPKIR/blob/main/fig/DEEPKIR_2nd_phase_design.png)
 The 2nd phase of DEEPKIR aim to solve graph-based genomic mapping / protein interaction
 
