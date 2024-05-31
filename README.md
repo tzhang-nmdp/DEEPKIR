@@ -22,8 +22,8 @@ conda activate pytorch
 ```
 ### Model training
 ``` r
-# run test 1KGP KIR3DL1/KIR3DS1/KIR3DL2 data
-# only trained with 2 digit due to data size,  ~ 99% accuracy)
+# run test 1KGP KIR3DL1/KIR3DS1 / KIR3DL2 data
+# only trained with 2 digit due to data size,  ~ 99% accuracy
 python train.py --ref reference/test (.bgl.phased (.haps)/.bim/.fam) --sample reference/test --model reference/test (.model.json) --kir reference/test (.kir.json) --model-dir reference/model --max-digit 2-digit
 ```
 
