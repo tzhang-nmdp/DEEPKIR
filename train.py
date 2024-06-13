@@ -22,127 +22,116 @@ logger = Logger('training.{}.log'.format(datetime.datetime.now().strftime('%y%m%
 print('Logging to training.log.')
 
 
-def test_model(test_loader, kir_list, allele_cnts, num_task, model, metric, mode):
-    torch.no_grad()
-    test_acc = []
+def test_model(test_loader, kir_list, allele_cnts, num_task, model, metric, mode, logger):
+    with torch.no_grad():
+        test_acc = []
 
-    for m in model:
-        model[m] = model[m].cpu()
-        model[m].eval()
+        # Move models to CPU and set to evaluation mode
+        for m in model:
+            model[m].cpu().eval()
 
-    for batch in test_loader:
-        shared_input = batch[0].requires_grad_(False)
-        labels = {}
-        for t in range(num_task):
-            labels[t] = batch[t+1].requires_grad_(False)
-        shared_output, mask_input, mask_1, mask_2 = model['shared'](shared_input.float(), None, None, None)
-        for t in range(num_task):
-            out_t, _ = model[t](shared_output.float(), None)
-            metric[t].update(out_t, labels[t])
+        # Iterate through test loader batches
+        for batch in test_loader:
+            shared_input = batch[0].float()
+            labels = {t: batch[t + 1].float() for t in range(num_task)}
 
-    t = 0
-    for kir in kir_list:
-        if not allele_cnts[kir] == 1:
-            if mode == 'train':
-                logger.log('{} training accuracy: {}'.format(kir, metric[t].get_result()['acc'].item()))
-            elif mode == 'val':
-                logger.log('{} validation accuracy: {}'.format(kir, metric[t].get_result()['acc'].item()))
-            test_acc.append(metric[t].get_result()['acc'].item())
-            metric[t].reset()
-            t += 1
-        else:
-            if mode == 'best_val':
-                test_acc.append('NA')
+            # Get shared model outputs
+            shared_output, mask_input, mask_1, mask_2 = model['shared'](shared_input, None, None, None)
+            
+            # Iterate through tasks
+            for t in range(num_task):
+                out_t, _ = model[t](shared_output, None)
+                metric[t].update(out_t, labels[t])
+
+        t = 0
+        for kir in kir_list:
+            if allele_cnts[kir] != 1:
+                accuracy = metric[t].get_result()['acc'].item()
+                if mode == 'train':
+                    logger.log(f'{kir} training accuracy: {accuracy}')
+                elif mode == 'val':
+                    logger.log(f'{kir} validation accuracy: {accuracy}')
+                test_acc.append(accuracy)
+                metric[t].reset()
+                t += 1
+            else:
+                if mode == 'best_val':
+                    test_acc.append('NA')
 
     return test_acc
 
 
-def train_model(train_loader, kir_list, allele_cnts, num_task, model, optimizer, loss_fn, metric, epoch):
+def train_model(train_loader, kir_list, allele_cnts, num_task, model, optimizer, loss_fn, metric, epoch, logger, CUDA_IS_AVAILABLE):
     if (epoch + 1) % 10 == 0:
-        # Every 50 epoch, half the LR
+        # Every 10 epochs, reduce the learning rate
         for param_group in optimizer.param_groups:
             param_group['lr'] *= 0.85
-        logger.log('Half the learning rate at epoch {}.'.format(epoch))
+        logger.log(f'Halved the learning rate at epoch {epoch}.')
 
+    # Move models to GPU if available
     for m in model:
         if CUDA_IS_AVAILABLE:
             model[m] = model[m].cuda()
         model[m].train()
 
-    with tqdm.tqdm(train_loader) as pbar:
+    with tqdm.tqdm(train_loader, desc=f'Epoch {epoch}') as pbar:
         for i, batch in enumerate(pbar):
-            shared_input = batch[0].requires_grad_(True)
+            shared_input = batch[0].float().requires_grad_(True)
             if CUDA_IS_AVAILABLE:
                 shared_input = shared_input.cuda()
 
-            labels = {}
-            for t in range(num_task):
-                labels[t] = batch[t+1]
-                if CUDA_IS_AVAILABLE:
-                    labels[t] = labels[t].cuda()
+            labels = {t: batch[t+1].long() for t in range(num_task)}
+            if CUDA_IS_AVAILABLE:
+                labels = {t: labels[t].cuda() for t in range(num_task)}
 
-            # Scaling the loss functions
             loss_data = {}
             grads = {}
             scale = {}
-            # Use mask variables as dropout in order to fix their values in the course of a epoch
             masks = {}
-            mask_input = None
-            mask1 = None
-            mask2 = None
+            mask_input = mask1 = mask2 = None
 
             optimizer.zero_grad()
 
-            # First compute representations (z)
             with torch.no_grad():
-                shared_output, mask_input, mask1, mask2 = model['shared'](shared_input.float(), mask_input, mask1, mask2)
-            # As an approximate solution we only need gradients for input
+                shared_output, mask_input, mask1, mask2 = model['shared'](shared_input, mask_input, mask1, mask2)
+
             shared_variable = shared_output.clone().requires_grad_(True)
 
-            # Compute gradients of each loss function wrt z
             for t in range(num_task):
                 optimizer.zero_grad()
-                out_t, masks[t] = model[t](shared_variable.float(), None)
-                loss_t = loss_fn[t](out_t, labels[t].long())
-                loss_data[t] = loss_t.data.item()
+                out_t, masks[t] = model[t](shared_variable, None)
+                loss_t = loss_fn[t](out_t, labels[t])
+                loss_data[t] = loss_t.item()
                 loss_t.backward()
-                grads[t] = []
-                grads[t].append(shared_variable.grad.data.clone().requires_grad_(False))
+                grads[t] = [shared_variable.grad.data.clone().requires_grad_(False)]
                 shared_variable.grad.data.zero_()
 
             if num_task != 1:
-                # Normalize all gradients
                 gn = gradient_normalizers(grads, loss_data)
                 for t in range(num_task):
-                    for gr_i in range(len(grads[t])):
-                        grads[t][gr_i] = grads[t][gr_i] / gn[t]
+                    grads[t] = [g / gn[t] for g in grads[t]]
 
-                # Frank-Wolfe iteration to compute scales.
                 sol, min_norm = MinNormSolver.find_min_norm_element([grads[t] for t in range(num_task)])
-                for t in range(num_task):
-                    scale[t] = float(sol[t])
+                scale = {t: float(sol[t]) for t in range(num_task)}
             else:
-                scale[0] = 1
+                scale = {0: 1}
 
-            # Scaled back-propagation
             optimizer.zero_grad()
-            shared_output, mask_input, mask1, mask2 = model['shared'](shared_input.float(), mask_input, mask1, mask2)
+            shared_output, mask_input, mask1, mask2 = model['shared'](shared_input, mask_input, mask1, mask2)
             for t in range(num_task):
-                out_t, mask_t = model[t](shared_output.float(), masks[t])
-                loss_t = loss_fn[t](out_t, labels[t].long())
-                loss_data[t] = loss_t.data.item()
-                if t > 0:
-                    loss = loss + scale[t] * loss_t
-                else:
+                out_t, mask_t = model[t](shared_output, masks[t])
+                loss_t = loss_fn[t](out_t, labels[t])
+                loss_data[t] = loss_t.item()
+                if t == 0:
                     loss = scale[t] * loss_t
+                else:
+                    loss += scale[t] * loss_t
 
             loss.backward()
             optimizer.step()
 
-            pbar.set_description('[Epoch %d]' % epoch)
-
     train_acc = test_model(train_loader, kir_list, allele_cnts, num_task, model, metric, 'train')
-    logger.log('Average training accuracy: {}'.format(np.mean(train_acc)))
+    logger.log(f'Average training accuracy: {np.mean(train_acc)}')
 
     torch.cuda.empty_cache()
 
